@@ -15,43 +15,67 @@
 
 using namespace std;
 
-class Stack
-{
-    friend ostream& operator<<(ostream& lhs, const Queue<T>& rhs)
-    public:
-        Stack::Stack()
-        Stack::size()
-        Stack::empty()
-        Stack::clear()
-        Stack::top()
-        Stack::push()    
-        Stack::pop()    
-        Stack<T>::Stack(const Stack<T>& other)
-        Stack<T>& Stack<T>::operator=(const Stack<T>& other)
-        Queue<T>::~Queue()
-        void Stack<T>::copyList(const Stack<T>& other)
-    private:
-        
-};
-
 struct Node
 {
-/* Data members
- *
- * This template structure should have two data members: a member of the template parameter type to store an item to
- *  be inserted into the stack, and a pointer to a Node. This pointer, next, will point to the next node in the linked
- *  list (or be nullptr if this is the last node in the list).
- *
- * Since the Stack class will need access to these data members, make them public (which is the default for a struct).
- *
- * Methods
- *
- * Constructor
- *
- * The structure should have a constructor that can be used to initialize the data members of the stack node. */
+    public:
+        // Method Prototypes
+        Node();
 
+        // Data Members
+        T topItem;
+        Node *next;
 };
 
+/***************************************************************
+ Node Constructor 
+
+ Use: Instantiates Node object and sets it's data attributes. 
+
+ Parameters: No parameters. 
+
+ Returns: No return.
+***************************************************************/
+template <class T>
+Node::Node()
+{
+    topItem = nullptr;
+    next = nullptr;
+}
+
+
+class Stack
+{
+    // friend ostream& operator<<(ostream& lhs, const Stack<T>& rhs)
+
+    public:
+        Stack();
+        /*
+        size_t size();
+        bool empty();
+        void clear();
+        top();
+        void push();
+        void pop();
+        Stack(const Stack<T>& other);
+        operator=(const Stack<T>& other);
+        Stack();
+        void copyList(const Stack<T>& other);
+        ~Stack();
+        */
+    private:
+        Node<T>* stkTop;
+        size_t stkSize;
+};
+
+/***************************************************************
+ Stack Constructor 
+
+ Use: Instantiates Stack object and sets it's data attributes. 
+
+ Parameters: No parameters. 
+
+ Returns: No return.
+***************************************************************/
 template <class T>
 Stack::Stack()
 {
@@ -59,14 +83,32 @@ Stack::Stack()
     stkSize = 0;
 }
 
+/***************************************************************
+ Size Method 
+
+ Use: Returns stack size data attribute. 
+
+ Parameters: No parameters. 
+
+ Returns: stkSize
+***************************************************************
 template <class T>
-Stack::size()
+size_t Stack::size()
 { 
-    Return stkSize.
+    return stkSize;
 } 
 
+/***************************************************************
+ Empty Method 
+
+ Use: Checks to see if Stack object is empty. 
+
+ Parameters: No parameters. 
+
+ Returns: True or False
+***************************************************************
 template <class T>
-Stack::empty()
+bool Stack::empty()
 { 
     if (stkSize == 0)
     {
@@ -78,25 +120,55 @@ Stack::empty()
     }
 }     
 
+/***************************************************************
+ Clear Method
+
+ Use: Clears the Stack. 
+
+ Parameters: No parameters. 
+
+ Returns: No return.
+***************************************************************
 template <class T>
-Stack::clear()
+void Stack::clear()
 {
-    // Similar to queue.
+    if ( stkSize != 0)
+    {
+        pop();
+    }
 }    
 
+/***************************************************************
+ Top method 
+
+ Use: Returns the top item in the stack. 
+
+ Parameters: No parameters. 
+
+ Returns: stkTop
+***************************************************************
 template <class T>
 Stack::top()
 {
-    if (stack is empty)
+    if (stkSize == 0)
     {
-       throw exception
+       throw underflow_error("Stack is empty yo."); 
     }
         
    return stkTop->data;
 }       
 
+/***************************************************************
+ Push method 
+
+ Use: Pushes a new item onto the stack.  
+
+ Parameters: No parameters. 
+
+ Returns: No return.
+***************************************************************
 template <class T>
-Stack::push()    
+void Stack::push()    
 {
     // Insert new item at top of stack.
      
@@ -106,14 +178,22 @@ Stack::push()
 
 }
      
+/***************************************************************
+ Pop method 
+
+ Use: Removes item from the top of the stack. 
+
+ Parameters: No parameters. 
+
+ Returns: No return.
+***************************************************************
 template <class T>
-Stack::pop()    
+void Stack::pop()    
 {
-    Remove top item from stack.
      
-    if (stack is empty)
+    if (stkSize == 0)
     {
-       throw exception
+       throw underflow_error("The stack is empty."); 
     }
 
     Node<T>* delNode = stkTop;
@@ -123,8 +203,15 @@ Stack::pop()
 
 }
 
-8. Copy Constructor
-        
+/***************************************************************
+ Copy Constructor 
+
+ Use: Copies one stack into another. 
+
+ Parameters: Constant reference to a stack object called other. 
+
+ Returns: No return.
+***************************************************************
 template <class T>
 Stack<T>::Stack(const Stack<T>& other)
 {
@@ -133,8 +220,15 @@ Stack<T>::Stack(const Stack<T>& other)
     stkSize = other.stkSize;
 }
 
-9. Copy Assignment Operator
- 
+/***************************************************************
+ Stack Assignment Operator 
+
+ Use: Sets one Stack equal to another. 
+
+ Parameters: No parameters. 
+
+ Returns: No return.
+***************************************************************
 template <class T>
 Stack<T>& Stack<T>::operator=(const Stack<T>& other)
 {
@@ -148,16 +242,30 @@ Stack<T>& Stack<T>::operator=(const Stack<T>& other)
     return *this;
 }
  
-10. Destructor
+/***************************************************************
+ Stack Destructor 
 
+ Use: Deletes a stack object. 
+
+ Parameters: No parameters. 
+
+ Returns: No return.
+***************************************************************
 template <class T>
-Queue<T>::~Queue()
+Stack<T>::~Stack()
 {
-    delete[] qArray;
+    delete[] stkArray;
 }
  
-11. copyList()
-     
+/***************************************************************
+ Copylist method 
+
+ Use: Makes a copy of a linked list.  
+
+ Parameters: A constant reference to a stack template object.  
+
+ Returns: No return.
+***************************************************************
 template <class T>
 void Stack<T>::copyList(const Stack<T>& other)
 {
@@ -179,18 +287,30 @@ void Stack<T>::copyList(const Stack<T>& other)
     }
 }
  
-// need to update to contain Stack info 
-ostream& operator<<(ostream& lhs, const Queue<T>& rhs)
+/***************************************************************
+ Output operator 
+
+ Use: Makes it possible to display a stack object using standard
+ output. 
+
+ Parameters: Reference to an ostream object lhs and reference to
+ a constant stack object rhs. 
+
+ Returns: lhs
+***************************************************************
+ostream& operator<<(ostream& lhs, const Stack<T>& rhs)
 {
     size_t current, i;
 
     for (current = rhs.qFront, i = 0; i < rhs.qSize; ++i)
     {
-        // Print queue element at subscript i
+        // Print stack element at subscript i
         lhs << rhs.qArray[current] << ' ';
-        // Increment i, wrapping around to front of queue array if necessary     
+        // Increment i, wrapping around to front of stack array if necessary     
         current = (current + 1) % rhs.qCapacity;
     }
 
     return lhs;
 }
+*/
+#endif
