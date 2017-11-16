@@ -4,7 +4,7 @@
 //// LOGON ID:    Z1732715
 //// DUE DATE:    11/16/17
 ////
-//// PURPOSE:     Declaration for the Stack class. ADTs 4 life. 
+//// PURPOSE:     Declaration for the linked Stack class. ADTs 4 life. 
 ////********************************************************************
 #ifndef STACK_H
 #define STACK_H
