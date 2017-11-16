@@ -68,20 +68,13 @@ class Stack
         size_t size();
         bool empty();
         void clear();
-        /*
-        top();
-        */
+        const T& top();
         void push(const T&);
         void pop();
         Stack(const Stack<T>& other);
-        /*
-        operator=(const Stack<T>& other);
-        Stack();
-        */
+        Stack<T>& operator=(const Stack<T>& other);
         void copyList(const Stack<T>& other);
-        /*
         ~Stack();
-        */
     private:
         Node<T>* stkTop;
         size_t stkSize;
@@ -152,7 +145,7 @@ bool Stack<T>::empty()
 template <class T>
 void Stack<T>::clear()
 {
-    if ( stkSize != 0)
+    while ( stkSize > 0)
     {
         pop();
     }
@@ -166,19 +159,17 @@ void Stack<T>::clear()
  Parameters: No parameters. 
 
  Returns: stkTop
-***************************************************************
+****************************************************************/
 template <class T>
-Stack::top()
+const T& Stack<T>::top()
 {
     if (stkSize == 0)
     {
        throw underflow_error("Stack is empty yo."); 
     }
-        
    return stkTop->data;
 }       
 
-*/
 /***************************************************************
  Push method 
 
@@ -249,7 +240,7 @@ Stack<T>::Stack(const Stack<T>& other)
  Parameters: No parameters. 
 
  Returns: No return.
-***************************************************************
+****************************************************************/
 template <class T>
 Stack<T>& Stack<T>::operator=(const Stack<T>& other)
 {
@@ -262,7 +253,6 @@ Stack<T>& Stack<T>::operator=(const Stack<T>& other)
 
     return *this;
 }
-*/
  
 /***************************************************************
  Stack Destructor 
@@ -272,13 +262,12 @@ Stack<T>& Stack<T>::operator=(const Stack<T>& other)
  Parameters: No parameters. 
 
  Returns: No return.
-***************************************************************
+****************************************************************/
 template <class T>
 Stack<T>::~Stack()
 {
-    delete[] stkArray;
+    clear();
 }
-*/
  
 /***************************************************************
  Copylist method 

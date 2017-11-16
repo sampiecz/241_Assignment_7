@@ -60,7 +60,6 @@ int main()
    s3.push(28);
 
    cout << "s3 (size " << s3.size() << "): " << s3 << endl << endl;
-   /*
 
    cout << "Testing assignment operator\n\n";
 
@@ -142,6 +141,5 @@ int main()
    cout << "s7 (size " << s7.size() << "): " << s7 << endl;
    cout << "s8 (size " << s8.size() << "): " << s8 << endl << endl;
 
-   */
    return 0;
    }
