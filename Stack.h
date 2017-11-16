@@ -65,10 +65,10 @@ class Stack
 
     public:
         Stack();
-        size_t size();
-        bool empty();
+        size_t size() const;
+        bool empty() const;
         void clear();
-        const T& top();
+        const T& top() const;
         void push(const T&);
         void pop();
         Stack(const Stack<T>& other);
@@ -106,7 +106,7 @@ Stack<T>::Stack()
  Returns: stkSize
 ***************************************************************/
 template <class T>
-size_t Stack<T>::size()
+size_t Stack<T>::size() const
 { 
     return stkSize;
 } 
@@ -121,7 +121,7 @@ size_t Stack<T>::size()
  Returns: True or False
 ****************************************************************/
 template <class T>
-bool Stack<T>::empty()
+bool Stack<T>::empty() const
 { 
     if (stkSize == 0)
     {
@@ -161,7 +161,7 @@ void Stack<T>::clear()
  Returns: stkTop
 ****************************************************************/
 template <class T>
-const T& Stack<T>::top()
+const T& Stack<T>::top() const
 {
     if (stkSize == 0)
     {
