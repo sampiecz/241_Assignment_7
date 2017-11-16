@@ -20,7 +20,6 @@ int main()
 
    Stack<int> s1;
 
-   /*
    cout << "s1 (size " << s1.size() << "): " << s1 << endl;
    cout << "s1 is " << ((s1.empty()) ? "empty\n" : "not empty\n");
    cout << endl;
@@ -42,6 +41,7 @@ int main()
    cout << endl;
 
    cout << "Testing copy constructor\n\n";
+   /*
    Stack<int> s2(s1);
 
    cout << "s1 (size " << s1.size() << "): " << s1 << endl;

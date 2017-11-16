@@ -1,4 +1,4 @@
-://*********************************************************************
+//*********************************************************************
 //// FILE:        Stack.h
 //// AUTHOR:      Samuel Piecz
 //// LOGON ID:    Z1732715
@@ -15,15 +15,20 @@
 
 using namespace std;
 
+// Forward declaration of the Queue template class
+template <class T>
+class Node;
+
+template <class T>
 struct Node
 {
     public:
         // Method Prototypes
-        Node();
+        Node(const T& = T(),Node<T>* = nullptr);
 
         // Data Members
-        T topItem;
-        Node *next;
+        T data;
+        Node<T>* next;
 };
 
 /***************************************************************
@@ -36,25 +41,38 @@ struct Node
  Returns: No return.
 ***************************************************************/
 template <class T>
-Node::Node()
+Node<T>::Node(const T& newData,Node<T>* newNext)
 {
-    topItem = nullptr;
-    next = nullptr;
+    // T() makes it dynamic so the template knows
+    // what to populate the empty 
+    data = newData;
+    next = newNext;
 }
 
+// Forward declaration of the Queue template class
+template <class T>
+class Stack;
 
+// Forward declaration of the operator<< template function
+template <class T>
+ostream& operator<<(ostream&, const Stack<T>&);
+
+template <class T>
 class Stack
 {
-    // friend ostream& operator<<(ostream& lhs, const Stack<T>& rhs)
+    // Friend function
+    friend ostream& operator<< <>(ostream& lhs, const Stack<T>& rhs);
 
     public:
         Stack();
-        /*
         size_t size();
         bool empty();
+        /*
         void clear();
         top();
-        void push();
+        */
+        void push(const T&);
+        /*
         void pop();
         Stack(const Stack<T>& other);
         operator=(const Stack<T>& other);
@@ -77,7 +95,7 @@ class Stack
  Returns: No return.
 ***************************************************************/
 template <class T>
-Stack::Stack()
+Stack<T>::Stack()
 {
     stkTop = nullptr;
     stkSize = 0;
@@ -91,9 +109,9 @@ Stack::Stack()
  Parameters: No parameters. 
 
  Returns: stkSize
-***************************************************************
+***************************************************************/
 template <class T>
-size_t Stack::size()
+size_t Stack<T>::size()
 { 
     return stkSize;
 } 
@@ -106,9 +124,9 @@ size_t Stack::size()
  Parameters: No parameters. 
 
  Returns: True or False
-***************************************************************
+****************************************************************/
 template <class T>
-bool Stack::empty()
+bool Stack<T>::empty()
 { 
     if (stkSize == 0)
     {
@@ -138,6 +156,7 @@ void Stack::clear()
     }
 }    
 
+*/
 /***************************************************************
  Top method 
 
@@ -158,6 +177,7 @@ Stack::top()
    return stkTop->data;
 }       
 
+*/
 /***************************************************************
  Push method 
 
@@ -166,9 +186,9 @@ Stack::top()
  Parameters: No parameters. 
 
  Returns: No return.
-***************************************************************
+****************************************************************/
 template <class T>
-void Stack::push()    
+void Stack<T>::push(const T& item)    
 {
     // Insert new item at top of stack.
      
@@ -203,6 +223,7 @@ void Stack::pop()
 
 }
 
+*/
 /***************************************************************
  Copy Constructor 
 
@@ -219,6 +240,7 @@ Stack<T>::Stack(const Stack<T>& other)
     copyList(other);
     stkSize = other.stkSize;
 }
+*/
 
 /***************************************************************
  Stack Assignment Operator 
@@ -241,6 +263,7 @@ Stack<T>& Stack<T>::operator=(const Stack<T>& other)
 
     return *this;
 }
+*/
  
 /***************************************************************
  Stack Destructor 
@@ -256,6 +279,7 @@ Stack<T>::~Stack()
 {
     delete[] stkArray;
 }
+*/
  
 /***************************************************************
  Copylist method 
@@ -286,6 +310,7 @@ void Stack<T>::copyList(const Stack<T>& other)
         last = newNode;
     }
 }
+*/
  
 /***************************************************************
  Output operator 
@@ -297,20 +322,19 @@ void Stack<T>::copyList(const Stack<T>& other)
  a constant stack object rhs. 
 
  Returns: lhs
-***************************************************************
+***************************************************************/
+template <class T>
 ostream& operator<<(ostream& lhs, const Stack<T>& rhs)
 {
-    size_t current, i;
+    Node<T>* bin;
 
-    for (current = rhs.qFront, i = 0; i < rhs.qSize; ++i)
+    for (bin = rhs.stkTop; bin != nullptr; bin = bin->next)
     {
-        // Print stack element at subscript i
-        lhs << rhs.qArray[current] << ' ';
-        // Increment i, wrapping around to front of stack array if necessary     
-        current = (current + 1) % rhs.qCapacity;
+        lhs << bin->data << ' ';
     }
 
     return lhs;
+
 }
-*/
+
 #endif
