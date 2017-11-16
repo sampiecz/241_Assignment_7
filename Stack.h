@@ -67,17 +67,19 @@ class Stack
         Stack();
         size_t size();
         bool empty();
-        /*
         void clear();
+        /*
         top();
         */
         void push(const T&);
-        /*
         void pop();
         Stack(const Stack<T>& other);
+        /*
         operator=(const Stack<T>& other);
         Stack();
+        */
         void copyList(const Stack<T>& other);
+        /*
         ~Stack();
         */
     private:
@@ -146,9 +148,9 @@ bool Stack<T>::empty()
  Parameters: No parameters. 
 
  Returns: No return.
-***************************************************************
+****************************************************************/
 template <class T>
-void Stack::clear()
+void Stack<T>::clear()
 {
     if ( stkSize != 0)
     {
@@ -156,7 +158,6 @@ void Stack::clear()
     }
 }    
 
-*/
 /***************************************************************
  Top method 
 
@@ -206,9 +207,9 @@ void Stack<T>::push(const T& item)
  Parameters: No parameters. 
 
  Returns: No return.
-***************************************************************
+****************************************************************/
 template <class T>
-void Stack::pop()    
+void Stack<T>::pop()    
 {
      
     if (stkSize == 0)
@@ -223,7 +224,6 @@ void Stack::pop()
 
 }
 
-*/
 /***************************************************************
  Copy Constructor 
 
@@ -232,7 +232,7 @@ void Stack::pop()
  Parameters: Constant reference to a stack object called other. 
 
  Returns: No return.
-***************************************************************
+***************************************************************/
 template <class T>
 Stack<T>::Stack(const Stack<T>& other)
 {
@@ -240,7 +240,6 @@ Stack<T>::Stack(const Stack<T>& other)
     copyList(other);
     stkSize = other.stkSize;
 }
-*/
 
 /***************************************************************
  Stack Assignment Operator 
@@ -289,7 +288,7 @@ Stack<T>::~Stack()
  Parameters: A constant reference to a stack template object.  
 
  Returns: No return.
-***************************************************************
+***************************************************************/
 template <class T>
 void Stack<T>::copyList(const Stack<T>& other)
 {
@@ -310,7 +309,6 @@ void Stack<T>::copyList(const Stack<T>& other)
         last = newNode;
     }
 }
-*/
  
 /***************************************************************
  Output operator 

@@ -41,7 +41,6 @@ int main()
    cout << endl;
 
    cout << "Testing copy constructor\n\n";
-   /*
    Stack<int> s2(s1);
 
    cout << "s1 (size " << s1.size() << "): " << s1 << endl;
@@ -61,6 +60,7 @@ int main()
    s3.push(28);
 
    cout << "s3 (size " << s3.size() << "): " << s3 << endl << endl;
+   /*
 
    cout << "Testing assignment operator\n\n";
 
